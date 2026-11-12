@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A felicidade é magra — Aula ao vivo com Michelle Leite</title>
+
+<!--
+  ============================================================
+  O QUE VOCÊ PRECISA EDITAR (só 2 coisas obrigatórias)
+  ============================================================
+  1) LINK DO CHECKOUT DA KIWIFY
+     Procure por CHECKOUT_URL no <script> no final do arquivo e troque
+     LINK_CHECKOUT_KIWIFY_AQUI pelo link do seu produto.
+     Todos os botões da página usam esse mesmo link.
+
+  2) FOTO DA MICHELLE
+     Salve a foto como "michelle.png" na MESMA pasta deste arquivo.
+     (Enquanto a foto não existir, aparece um espaço reservado.)
+
+  OPCIONAL
+  - Horário da aula: está 19h (Brasília). Para mudar, ajuste o texto
+    "19h" na página e a data em CONST_EVENT_DATE no <script>.
+
+  PUBLICAR NO GITHUB PAGES
+  - Suba index.html e michelle.png na raiz do repositório.
+  - Settings > Pages > Source: branch "main", pasta "/ (root)".
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg-deep: #120A22;
+    --bg-glow: #3A1458;
+    --card: #1E1038;
+    --card-line: #4A2A6B;
+    --pink: #EC5CA0;
+    --pink-soft: #F6A8CC;
+    --gold: #EFC06B;
+    --text-light: #F6EEF8;
+    --text-muted: #B49CC9;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:
+      radial-gradient(ellipse 90% 40% at 50% -5%, var(--bg-glow) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 30% at 90% 10%, rgba(236,92,160,0.18) 0%, transparent 60%),
+      var(--bg-deep);
+    background-repeat: no-repeat;
+    color: var(--text-light);
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    line-height: 1.65;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .wrap{
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  section{ padding: 72px 0; }
+  .center{ text-align: center; }
+
+  .eyebrow{
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    border: 1px solid rgba(236,92,160,0.5);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pink-soft);
+    margin: 0 0 22px;
+  }
+
+  h1, h2, h3{ font-family: 'Fraunces', serif; margin: 0; }
+
+  h1{
+    font-weight: 600;
+    font-size: clamp(2.3rem, 7vw, 3.4rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, #FFFFFF 10%, var(--pink-soft) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  h1 .accent{
+    display: block;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.6rem, 5.2vw, 2.3rem);
+    margin-top: 6px;
+    background: linear-gradient(90deg, var(--pink) 10%, var(--gold) 95%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  h2{
+    font-weight: 600;
+    font-size: clamp(1.7rem, 5vw, 2.2rem);
+    line-height: 1.2;
+    margin-bottom: 18px;
+    color: var(--text-light);
+  }
+  h2 em{
+    font-style: italic;
+    font-weight: 500;
+    background: linear-gradient(90deg, var(--pink) 10%, var(--gold) 95%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  p{ margin: 0 0 16px; }
+  .muted{ color: var(--text-muted); }
+  .lead{ font-size: 1.05rem; color: var(--text-muted); max-width: 46ch; }
+  .center .lead{ margin-left: auto; margin-right: auto; }
+
+  /* ---------- Botão ---------- */
+  .btn{
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(90deg, var(--pink) 0%, #D94B91 100%);
+    color: #FFF6FA;
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 14px 34px -12px rgba(236,92,160,0.7);
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .btn:hover{ filter: brightness(1.08); transform: translateY(-1px); }
+  .btn.block{ display: block; text-align: center; width: 100%; }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding-top: 64px; text-align: center; }
+  .hero .lead{ margin: 22px auto 34px; }
+
+  .statrow{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 24px 0;
+    margin-top: 44px;
+    border-top: 1px solid rgba(236,92,160,0.22);
+    border-bottom: 1px solid rgba(236,92,160,0.22);
+  }
+  .stat .num{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--pink-soft);
+  }
+  .stat .lbl{
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .countdown{
+    display: flex;
+    justify-content: center;
+    gap: 26px;
+    margin-top: 34px;
+  }
+  .countdown .val{
+    font-family: 'Fraunces', serif;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: 1.7rem;
+  }
+  .countdown .lbl{
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Três momentos ---------- */
+  .phases{
+    display: grid;
+    gap: 16px;
+    margin-top: 36px;
+  }
+  .phase{
+    background: linear-gradient(160deg, var(--card) 0%, #170B2A 100%);
+    border: 1px solid var(--card-line);
+    border-radius: 14px;
+    padding: 24px 24px;
+  }
+  .phase .tag{
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .phase h3{
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+  .phase p{ color: var(--text-muted); margin: 0; font-size: 0.97rem; }
+
+  /* ---------- Entregáveis ---------- */
+  .points{
+    list-style: none;
+    margin: 30px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+  }
+  .points li{
+    display: flex;
+    gap: 14px;
+    padding: 18px 20px;
+    background: rgba(30,16,56,0.6);
+    border: 1px solid rgba(74,42,107,0.7);
+    border-radius: 12px;
+  }
+  .points li::before{
+    content: "✦";
+    color: var(--pink);
+    flex-shrink: 0;
+    line-height: 1.65;
+  }
+  .points li b{ font-weight: 500; color: var(--text-light); }
+  .points li span{ color: var(--text-muted); }
+
+  /* ---------- Mentora ---------- */
+  .mentor{
+    display: grid;
+    gap: 34px;
+    align-items: center;
+  }
+  .photo-frame{
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    aspect-ratio: 735 / 921;   /* proporção real da foto */
+  }
+  .photo-frame .inner{
+    width: 100%;
+    height: 100%;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 2px solid var(--pink);
+    background: #1B0F31;
+    box-shadow:
+      0 0 44px rgba(236,92,160,0.35),
+      0 30px 60px -20px rgba(80,20,90,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+  .photo-frame img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .badge{
+    position: absolute;
+    z-index: 2;
+    padding: 12px 20px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #EC4A97 0%, #9A2BC4 100%);
+    color: #FFF6FA;
+    box-shadow: 0 16px 34px -10px rgba(190,40,150,0.65);
+    line-height: 1.1;
+  }
+  .badge b{
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.7rem;
+  }
+  .badge span{
+    display: block;
+    margin-top: 5px;
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.92;
+  }
+  .badge.top{ top: -18px; left: -18px; }
+  .badge.bottom{ right: -18px; bottom: -18px; }
+  .mentor-name{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--pink-soft);
+    margin-bottom: 10px;
+  }
+  .mentor .big{
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    color: var(--text-light);
+  }
+  blockquote{
+    margin: 24px 0 0;
+    padding: 20px 22px;
+    border-left: 3px solid var(--pink);
+    background: rgba(236,92,160,0.08);
+    border-radius: 0 12px 12px 0;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  blockquote cite{
+    display: block;
+    margin-top: 12px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Oferta ---------- */
+  .offer-card{
+    max-width: 460px;
+    margin: 34px auto 0;
+    background: linear-gradient(160deg, var(--card) 0%, #170B2A 100%);
+    border: 1px solid var(--card-line);
+    border-radius: 18px;
+    padding: 36px 30px;
+    box-shadow: 0 30px 60px -20px rgba(80,20,90,0.5);
+    text-align: center;
+  }
+  .price{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 3.4rem;
+    line-height: 1;
+    background: linear-gradient(90deg, #FFFFFF 10%, var(--pink-soft) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .price small{ font-size: 1.2rem; margin-right: 4px; }
+  .price-note{ font-size: 0.85rem; color: var(--text-muted); margin: 8px 0 24px; }
+  .offer-list{
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+    text-align: left;
+    display: grid;
+    gap: 10px;
+    font-size: 0.97rem;
+  }
+  .offer-list li{ display: flex; gap: 10px; }
+  .offer-list li::before{ content: "✦"; color: var(--pink); }
+  .secure{ font-size: 0.78rem; color: var(--text-muted); margin: 14px 0 0; }
+
+  .closing{
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    max-width: 30ch;
+    margin: 44px auto 0;
+    color: var(--pink-soft);
+  }
+
+  footer{
+    padding: 30px 0 110px;
+    text-align: center;
+    font-size: 0.76rem;
+    color: #8A74A0;
+    border-top: 1px solid rgba(74,42,107,0.5);
+  }
+  footer .wrap{ max-width: 560px; }
+
+  /* ---------- Botão fixo ---------- */
+  .sticky{
+    position: fixed;
+    right: 18px;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .sticky.show{ opacity: 1; pointer-events: auto; transform: none; }
+
+  @media (min-width: 720px){
+    .phases{ grid-template-columns: repeat(3, 1fr); }
+    .mentor{ grid-template-columns: 340px 1fr; gap: 56px; }
+  }
+  @media (max-width: 480px){
+    .statrow{ gap: 22px; }
+    .stat .num{ font-size: 1.2rem; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .sticky{ transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="wrap hero">
+  <span class="eyebrow">✦ Aula ao vivo · 25 de novembro</span>
+
+  <h1>A felicidade é magra.
+    <span class="accent">Chegue ao Natal mais leve e continue em janeiro.</span>
+  </h1>
+
+  <p class="lead">
+    Uma aula ao vivo com Michelle Leite para você chegar mais magra ao
+    Natal, manter a linha entre as festas e seguir emagrecendo em 2027
+    sem perder o que conquistou e sem começar tudo de novo.
+  </p>
+
+  <a class="btn" data-checkout href="#">Quero garantir minha vaga · R$ 19,90</a>
+
+  <div class="statrow">
+    <div class="stat"><div class="num">25 NOV</div><div class="lbl">Data</div></div>
+    <div class="stat"><div class="num">19h</div><div class="lbl">Horário de Brasília</div></div>
+    <div class="stat"><div class="num">Zoom</div><div class="lbl">Ao vivo</div></div>
+  </div>
+
+  <div class="countdown" aria-label="Contagem regressiva para a aula">
+    <div><div class="val" id="cd-d">–</div><div class="lbl">dias</div></div>
+    <div><div class="val" id="cd-h">–</div><div class="lbl">horas</div></div>
+    <div><div class="val" id="cd-m">–</div><div class="lbl">min</div></div>
+    <div><div class="val" id="cd-s">–</div><div class="lbl">seg</div></div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ PROBLEMA / TRÊS MOMENTOS ============ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">✦ O roteiro de todo fim de ano</span>
+    <h2>Você se esforça até as festas, solta tudo e em janeiro <em>promete recomeçar.</em></h2>
+    <p class="muted">
+      Esse ciclo se repete porque o plano costuma pensar só em um
+      pedaço do caminho. Nesta aula, o foco é o caminho inteiro: três
+      momentos, uma única direção.
+    </p>
+
+    <div class="phases">
+      <div class="phase">
+        <span class="tag">Momento 1</span>
+        <h3>Até o Natal</h3>
+        <p>Chegar mais magra sem sofrimento: como aproveitar as semanas que restam para avançar de verdade, sem dietas loucas e sem punição.</p>
+      </div>
+      <div class="phase">
+        <span class="tag">Momento 2</span>
+        <h3>Do Natal ao Ano Novo</h3>
+        <p>Manter a linha no meio das festas: como atravessar ceias, encontros e a rotina fora do eixo sem jogar fora o que você construiu.</p>
+      </div>
+      <div class="phase">
+        <span class="tag">Momento 3</span>
+        <h3>Janeiro de 2027</h3>
+        <p>Continuar em vez de recomeçar: como dar seguimento ao emagrecimento sem perder o progresso e sem voltar à estaca zero.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ENTREGÁVEIS ============ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">✦ O que você vai levar</span>
+    <h2>O que você vai levar <em>dessa aula</em></h2>
+
+    <ul class="points">
+      <li><span><b>Como chegar ao Natal mais leve</b>, sem dieta maluca e sem viver em guerra com a comida.</span></li>
+      <li><span><b>Como atravessar o Natal e o Ano Novo</b> sem deixar as festas desfazerem o seu progresso.</span></li>
+      <li><span><b>Como reconhecer os sabotadores emocionais</b> que aparecem justamente nessa época e o que fazer quando eles surgirem.</span></li>
+      <li><span><b>Como manter a constância</b> mesmo com a rotina bagunçada de fim de ano.</span></li>
+      <li><span><b>Um plano para janeiro de 2027</b>, para você dar continuidade ao processo sem precisar começar tudo de novo.</span></li>
+    </ul>
+
+    <p style="text-align:center; margin-top:34px;">
+      <a class="btn" data-checkout href="#">Quero participar por R$ 19,90</a>
+    </p>
+  </div>
+</section>
+
+<!-- ============ MENTORA ============ -->
+<section>
+  <div class="wrap">
+    <div class="mentor">
+
+      <div class="photo-frame">
+        <div class="inner" id="photo-inner">
+          <img src="michelle.png" alt="Michelle Leite" id="michelle-img">
+        </div>
+        <div class="badge top"><b>100%</b><span>Sem cirurgia</span></div>
+        <div class="badge bottom"><b>50kg</b><span>Eliminados por Michelle</span></div>
+      </div>
+
+      <div>
+        <span class="eyebrow">✦ Quem será sua mentora?</span>
+        <div class="mentor-name">Michelle Leite</div>
+        <p class="big">Ela não te ensina teoria. Ela te ensina o que funcionou na própria vida.</p>
+
+        <p class="muted">
+          Michelle Leite carregou por anos não só os quilos a mais:
+          carregava a vergonha, a sensação de fracasso e a crença de que
+          “ela simplesmente não tinha disciplina para emagrecer”.
+        </p>
+        <p class="muted">
+          Depois de tentar dezenas de dietas e abordagens, ela percebeu
+          que o peso era apenas um sintoma. A raiz do problema estava nas
+          crenças limitantes que a impediam de avançar e nos sabotadores
+          emocionais que destruíam qualquer tentativa de mudança.
+        </p>
+        <p class="muted">
+          Quando ela transformou sua mentalidade, os 50kg foram
+          consequência. Não o contrário.
+        </p>
+
+        <blockquote>
+          “Nenhuma dieta do mundo funciona enquanto sua mente não estiver do seu lado. Quando aprendi isso, tudo mudou.”
+          <cite>Michelle Leite · Criadora do Método PSM</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFERTA ============ -->
+<section id="oferta">
+  <div class="wrap center">
+    <span class="eyebrow">✦ Sua vaga</span>
+    <h2>Aula ao vivo <em>pelo Zoom</em></h2>
+    <p class="lead">Um valor acessível para você chegar ao Natal, atravessar as festas e entrar em 2027 com o progresso intacto.</p>
+
+    <div class="offer-card">
+      <div class="price"><small>R$</small>19,90</div>
+      <p class="price-note">pagamento único</p>
+
+      <ul class="offer-list">
+        <li>Aula ao vivo com Michelle Leite</li>
+        <li>25 de novembro, às 19h (horário de Brasília)</li>
+        <li>Acesso pelo Zoom</li>
+        <li>Plano para o Natal, o Ano Novo e janeiro de 2027</li>
+      </ul>
+
+      <a class="btn block" data-checkout href="#">Quero garantir minha vaga</a>
+      <p class="secure">Pagamento seguro pela Kiwify.</p>
+    </div>
+
+    <p class="closing">Dessa vez, você chega ao Natal e continua depois dele.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>
+      Os resultados variam de pessoa para pessoa e dependem de dedicação
+      individual. Esta aula tem caráter educativo e não substitui
+      orientação médica ou nutricional.
+    </p>
+    <p>© 2026 Michelle Leite · Método PSM</p>
+  </div>
+</footer>
+
+<a class="btn sticky" id="stickyCta" data-checkout href="#">Quero minha vaga</a>
+
+<script>
+  // ===== LINK DO CHECKOUT (KIWIFY) =====
+  // Troque pelo link do seu produto. Vale para todos os botões da página.
+  const CHECKOUT_URL = "LINK_CHECKOUT_KIWIFY_AQUI";
+
+  document.querySelectorAll('[data-checkout]').forEach(function(a){
+    a.href = CHECKOUT_URL;
+  });
+
+  // ===== DATA DA AULA =====
+  // 25/11/2026 às 19h, horário de Brasília (-03:00).
+  const CONST_EVENT_DATE = new Date("2026-11-25T19:00:00-03:00");
+
+  function updateCountdown(){
+    let diff = CONST_EVENT_DATE - new Date();
+    if (diff < 0) diff = 0;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff / 3600000) % 24);
+    const m = Math.floor((diff / 60000) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    document.getElementById('cd-d').textContent = d;
+    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ===== FOTO DA MICHELLE: espaço reservado se o arquivo não existir =====
+  (function(){
+    const img = document.getElementById('michelle-img');
+    const inner = document.getElementById('photo-inner');
+    img.addEventListener('error', function(){
+      img.style.display = 'none';
+      inner.style.padding = '24px';
+      inner.textContent = 'Salve a foto como michelle.png na mesma pasta';
+    });
+  })();
+
+  // ===== BOTÃO FIXO: aparece depois de rolar a página =====
+  (function(){
+    const sticky = document.getElementById('stickyCta');
+    function toggle(){
+      sticky.classList.toggle('show', window.scrollY > 520);
+    }
+    window.addEventListener('scroll', toggle, { passive: true });
+    toggle();
+  })();
+</script>
+
+</body>
+</html>
